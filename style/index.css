@@ -1,0 +1,170 @@
+/* Reset chung */
+body {
+  margin: 0;
+  background: white;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #ff6b6b, #ee82ee, #ffa500);
+  padding: 15px 0;
+}
+
+/* NAVIGATION MENU */
+.header-menu {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép menu tự xuống dòng khi cần */
+  gap: 15px;
+  align-items: center;
+}
+
+.header-menu li a {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* ICON HEADER */
+.header-icon {
+  font-size: 40px;
+  color: white;
+  margin-left: 5px;
+}
+
+/* INPUT TÌM KIẾM */
+.input_search {
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 100%; /* Để input tự co giãn theo màn hình */
+  max-width: 300px; /* Không quá rộng trên màn hình lớn */
+}
+
+.position-relative i {
+  color: gray;
+}
+
+.Product_book {
+  background: yellow;
+  padding: 20px 0;
+}
+
+.text_title {
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.design_products {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), 4px 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.design_products:hover {
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.img_book {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+.Banner_layout{
+  width: 100%;
+  height: 600px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.carousel_banner{
+  width: 100%;
+  height: 100%;
+
+}
+.carousel-item {
+  height: 100%;
+  width: 100%;
+}
+.img_banner{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer {
+  background: url('https://doctruyentranh.net.vn/wp-content/uploads/2025/02/banner-section-1.jpg') no-repeat center center;
+  background-size: cover;
+  color: rgb(212, 242, 94);
+  padding: 40px 0;
+}
+.footer a {
+  color: rgb(212, 242, 94);
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .header-menu {
+    justify-content: center;
+  }
+  .input_search {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .text_title {
+    font-size: 12px;
+  }
+  .img_book {
+    max-width: 150px;
+  }
+  .header-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .design_products {
+    padding: 10px;
+  }
+  .img_book {
+    max-width: 120px;
+  }
+  .input_search {
+    max-width: 150px;
+  }
+}
+
