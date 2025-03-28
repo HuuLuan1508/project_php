@@ -3,14 +3,13 @@ $host = "localhost";  // Máy chủ (nếu dùng XAMPP/Laragon thì là "localho
 $username = "root";   // Tên tài khoản mặc định của MySQL (XAMPP/Laragon là "root")
 $password = "";       // Mật khẩu mặc định (XAMPP/Laragon thường để trống)
 $database = "Project_php"; // Tên database bạn đã tạo trong phpMyAdmin
+$port = "3307"; // Cổng
 
 // Kết nối MySQL
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $username, $password, $database, $port);
 
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
-} else {
-    // echo "Kết nối thành công!";
 }
 ?>
