@@ -19,12 +19,6 @@ a {
   color: black;
 }
 
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #ff6b6b, #ee82ee, #ffa500);
-  padding: 15px 0;
-}
-
 /* NAVIGATION MENU */
 .header-menu {
   display: flex;
@@ -89,14 +83,14 @@ header {
 }
 
 .img_book {
-  width: 100%;
+  width: auto;
   max-width: 200px;
   height: auto;
   object-fit: cover;
   display: block;
   margin: 0 auto;
 }
-.Banner_layout{
+.Banner_layout {
   width: 100%;
   height: 600px;
 
@@ -105,23 +99,23 @@ header {
   align-items: center;
   overflow: hidden;
 }
-.carousel_banner{
+.carousel_banner {
   width: 100%;
   height: 100%;
-
 }
 .carousel-item {
   height: 100%;
   width: 100%;
 }
-.img_banner{
+.img_banner {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
 .footer {
-  background: url('https://doctruyentranh.net.vn/wp-content/uploads/2025/02/banner-section-1.jpg') no-repeat center center;
+  background: url("https://doctruyentranh.net.vn/wp-content/uploads/2025/02/banner-section-1.jpg")
+    no-repeat center center;
   background-size: cover;
   color: rgb(212, 242, 94);
   padding: 40px 0;
@@ -167,4 +161,3 @@ header {
     max-width: 150px;
   }
 }
-

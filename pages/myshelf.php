@@ -30,36 +30,18 @@
     height: 70px;
     width: 100%;
 }
-.left_myshelf{
-    background-image: url('../imgs/keleft.png');
-    background-size: contain; /* Hiển thị toàn bộ ảnh */
-    background-repeat: no-repeat;
-    height: 200px; /* Giữ chiều cao */
-    display: flex; /* Giúp căn giữa nội dung */
-    justify-content: center;
-    margin-right: -4px;
-    
-}
+
 .center_myshelf{
     background-image: url('https://fliphtml5.com/bookcase/img/red-1.png');
     background-size: contain; /* Hiển thị toàn bộ ảnh */
     background-repeat: repeat-x;
     background-size: contain;
     height: 199px; /* Giữ chiều cao */
-    display: flex; /* Giúp căn giữa nội dung */
-    justify-content: center;
+    width: 100%;
    
 
 }
-.right_myshelf{
-    background-image: url('../imgs/keright.png');
-    background-size: contain; /* Hiển thị toàn bộ ảnh */
-    background-repeat: no-repeat;
-    height: 200px; /* Giữ chiều cao */
-    display: flex; /* Giúp căn giữa nội dung */
-    justify-content: center;
-    
-}
+
 .img_book{
     width: auto;
     height: 140px;
@@ -71,30 +53,85 @@
 </style>
     <body>
     <?php include("../components/header.php"); ?>
-  <div class="header_myshefl mb-0">
+  <div class="header_myshefl text-center mb-0">
+   
   </div>
  <div class="container-fluid">
- <div class="row mt-0">
-    <div class="left_myshelf col-2">
-        <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image">
-        
-    </div>
+ <?php
+include '../db.php'; // Kết nối database
+$query = "SELECT * FROM books";
+$result = $conn->query($query);
+?>
 
-    <!-- Cột giữa -->
-    <div class="center_myshelf col-8 text-center d-flex gap-4">
-    <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image">
-    <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image">
-    <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image">
-    <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image">
-
+<div class="row mt-0">
+    <div class="center_myshelf col-12 d-flex flex-wrap">
+    <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center mb-3">
+                <a href="details.php?id=<?= $row['id'] ?>">
+                    <img src="<?= $row['image'] ?>" class="img_book" alt="<?= $row['title'] ?>">
+                    <p class="text_title mt-2"> <?= $row['title'] ?> </p>
+                </a>
+            </div>
+            <?php endwhile; ?>
     </div>
-
-    <!-- Cột phải -->
-    <div class="right_myshelf col-2 d-flex justify-content-center">
-        <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Right Image">
-    </div>
+   
 </div>
+<div class="row mt-0">
+    <div class="center_myshelf col-12 d-flex justify-content-start">
+            <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+        </div>
+    </div>
  </div>
+ <div class="row mt-0">
+    <div class="center_myshelf col-12 d-flex justify-content-start">
+            <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+             <div class="col-2">
+                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
+             </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+<?php $conn->close(); ?>
+ 
+ 
+ <div class="header_myshefl mb-0 mt-0">
+ </div>
+ <?php include("../components/footer.php"); ?>
 
 
         <!-- Bootstrap JavaScript Libraries -->

@@ -1,47 +1,46 @@
+<?php
+include 'db.php'; // Kết nối database
+
+// Lấy danh sách sách từ database
+$sql = "SELECT * FROM books";
+$result = $conn->query($sql);
+
+// Kiểm tra lỗi SQL
+if (!$result) {
+    die("Lỗi SQL: " . $conn->error);
+}
+?>
 
 <div class="container mt-4 mb-5">
-<hr>
+    <hr>
     <div class="row mt-4">
-    <div class="col-6 col-lg-3 d-flex justify-content-center text-center mt-3">
-        <ul>
-            <li class="design_products">
-                <a href="">
-                    <img class="img_book"src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNJko8rrRVmp86FTk72v2RXnw4qwPrho9U063AwC0orQulIDCcDZInRRHaVbd-f3_HhZZxNHh6Sz3y9VJ2yJStBZJ9RZT6mYc-iuhHXRLUPM2jpHl4persjwR5l89tFTiA7q2PDH4LVzg/w200/cover.jpg" alt="">
-                    <p class="text_title mt-2">XÌ TRUM HỌC LÀM PHÙ THỦY</p>
+        <?php while ($book = $result->fetch_assoc()) { ?>
+            <div class="col-6 col-lg-3 d-flex justify-content-center text-center mt-5">
+                <ul>
+                    <li class="design_products">
+                        <a href="/PROJECT_PHP/pages/viewdetail.php?id=<?= $book['id']; ?>">
+                            <img class="img_book" src="<?= htmlspecialchars($book['image']); ?>" alt="<?= htmlspecialchars($book['title']); ?>">
+                            <p class="text_title mt-2"><?= htmlspecialchars($book['title']); ?></p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <?php } ?>
+    </div>
+</div>
 
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-6 col-lg-3 d-flex text-center mt-3 justify-content-center">
-        <ul>
-            <li class="design_products">
-                <a href="">
-                    <img class="img_book" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNJko8rrRVmp86FTk72v2RXnw4qwPrho9U063AwC0orQulIDCcDZInRRHaVbd-f3_HhZZxNHh6Sz3y9VJ2yJStBZJ9RZT6mYc-iuhHXRLUPM2jpHl4persjwR5l89tFTiA7q2PDH4LVzg/w200/cover.jpg" alt="">
-                    <p class="text_title mt-2">XÌ TRUM HỌC LÀM PHÙ THỦY</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-6 col-lg-3 d-flex text-center mt-3 justify-content-center">
-        <ul>
-            <li class="design_products">
-                <a href="">
-                    <img class="img_book" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNJko8rrRVmp86FTk72v2RXnw4qwPrho9U063AwC0orQulIDCcDZInRRHaVbd-f3_HhZZxNHh6Sz3y9VJ2yJStBZJ9RZT6mYc-iuhHXRLUPM2jpHl4persjwR5l89tFTiA7q2PDH4LVzg/w200/cover.jpg" alt="">
-                    <p class="text_title mt-2">XÌ TRUM HỌC LÀM PHÙ THỦY</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-6 col-lg-3 d-flex text-center mt-3 justify-content-center">
-        <ul>
-            <li class="design_products">
-                <a href="">
-                    <img class="img_book" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNJko8rrRVmp86FTk72v2RXnw4qwPrho9U063AwC0orQulIDCcDZInRRHaVbd-f3_HhZZxNHh6Sz3y9VJ2yJStBZJ9RZT6mYc-iuhHXRLUPM2jpHl4persjwR5l89tFTiA7q2PDH4LVzg/w200/cover.jpg" alt="">
-                    <p class="text_title mt-2">XÌ TRUM HỌC LÀM PHÙ THỦY</p>
-                </a>
-            </li>
-        </ul>
-    </div>  
-</div>
-</div>
+<?php 
+$conn->close(); 
+?>
+
+<style>
+    .img_book {
+        width: 200px;
+        height: 280px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+
