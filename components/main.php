@@ -22,6 +22,11 @@ if (!$result) {
                             <img class="img_book" src="<?= htmlspecialchars($book['image']); ?>" alt="<?= htmlspecialchars($book['title']); ?>">
                             <p class="text_title mt-2"><?= htmlspecialchars($book['title']); ?></p>
                         </a>
+                        <div class="rating">
+                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                <i class="fa<?= ($i <= $book['star']) ? 's' : 'r'; ?> fa-star"></i>
+                            <?php } ?>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -41,6 +46,7 @@ $conn->close();
         display: block;
         margin: 0 auto;
     }
+    .rating i {
+        color: gold;
+    }
 </style>
-
-

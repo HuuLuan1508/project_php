@@ -43,90 +43,70 @@
 }
 
 .img_book{
-    width: auto;
+    width: 100px;
     height: 140px;
     object-fit: cover;
-    margin-top: 48px;
+    margin-top: 30px;
    
 }
+.bookshelf-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Canh giữa */
+    background-image: url('https://fliphtml5.com/bookcase/img/red-1.png');
+    background-size: contain;
+    background-repeat: repeat-x;
+    width: 100%;
+    height: auto;
+}
+
+.book-item {
+    flex: 0 0 calc(100% / 6); /* 6 cuốn mỗi hàng */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 
 </style>
     <body>
     <?php include("../components/header.php"); ?>
-  <div class="header_myshefl text-center mb-0">
-   
+  <div class="header_myshefl text-center mb-0">  
   </div>
- <div class="container-fluid">
- <?php
-include '../db.php'; // Kết nối database
-$query = "SELECT * FROM books";
-$result = $conn->query($query);
-?>
 
-<div class="row mt-0">
-    <div class="center_myshelf col-12 d-flex flex-wrap">
-    <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center mb-3">
-                <a href="details.php?id=<?= $row['id'] ?>">
-                    <img src="<?= $row['image'] ?>" class="img_book" alt="<?= $row['title'] ?>">
-                    <p class="text_title mt-2"> <?= $row['title'] ?> </p>
-                </a>
+<div>
+    <?php
+    include '../db.php'; // Kết nối database
+    $query = "SELECT * FROM books";
+    $result = $conn->query($query);
+
+    $count = 0;
+    while ($row = $result->fetch_assoc()):
+        if ($count % 6 == 0): // Bắt đầu hàng mới sau mỗi 6 sách
+    ?>
+            <div class="bookshelf-row">
+    <?php endif; ?>
+
+                <div class="book-item">
+                    <a href="details.php?id=<?= $row['id'] ?>">
+                        <img src="<?= $row['image'] ?>" class="img_book" alt="<?= $row['title'] ?>">
+                    </a>
+                </div>
+
+    <?php 
+        $count++;
+        if ($count % 6 == 0): // Đóng hàng sau 6 sách
+    ?>
             </div>
-            <?php endwhile; ?>
-    </div>
-   
+    <?php endif; ?>
+    <?php endwhile; ?>
+
+    <?php if ($count % 6 != 0): // Đóng hàng nếu chưa đủ 6 sách ?>
+        </div>
+    <?php endif; ?>
+
 </div>
-<div class="row mt-0">
-    <div class="center_myshelf col-12 d-flex justify-content-start">
-            <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-        </div>
-    </div>
- </div>
- <div class="row mt-0">
-    <div class="center_myshelf col-12 d-flex justify-content-start">
-            <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-             <div class="col-2">
-                <a href=""> <img src="https://online.fliphtml5.com/qyhf/cpki/files/shot.jpg" class="img_book" alt="Left Image"></a>
-             </div>
-        </div>
-    </div>
- </div>
-
-
-
-
 <?php $conn->close(); ?>
+
  
  
  <div class="header_myshefl mb-0 mt-0">
