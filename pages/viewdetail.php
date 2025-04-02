@@ -1,7 +1,6 @@
 <?php
 include '../db.php'; // Kết nối database
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 
 // Kiểm tra ID hợp lệ
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -12,13 +11,13 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $id = intval($_GET['id']);
 
 // Lấy thông tin sách
-$sql = "SELECT * FROM books WHERE id = ?";
+$sql = "SELECT * FROM books WHERE id = ?"; 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows == 0) {
+if ($result->num_rows == 0) {//kiểm tra xem; có tồn tại hay không
     echo "<p style='color:red;'>Lỗi: Không tìm thấy sách với ID này ($id)</p>";
     exit;
 }

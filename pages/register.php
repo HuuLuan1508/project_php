@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Mã hóa mật khẩu trước khi lưu vào database
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
     // Kiểm tra email đã tồn tại chưa
     $check_email = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($check_email);
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Chèn dữ liệu vào bảng users
-    $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
+    $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$hashed_password')";//mk dạng băm
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Đăng ký thành công!'); window.location.href='login.php';</script>";
