@@ -62,6 +62,14 @@ $chapters = $stmt->get_result();
                     <p><strong>Tác giả:</strong> <?= htmlspecialchars($book['author']) ?></p>
                     <p><strong>Thể loại:</strong> <?= htmlspecialchars($book['category']) ?></p>
                     <p><?= nl2br(htmlspecialchars($book['description'])) ?></p>
+                    
+                    <!-- Thêm nút "Thêm vào kệ sách" -->
+                    <form method="post" action="add_to_shelf.php">
+                        <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-bookmark"></i> Thêm vào kệ sách
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -97,7 +105,7 @@ $conn->close();
 <style>
     .img_book_detail{
         width: 190px;
-        height: auto;
+        height: auto;   
         object-fit: contain;
     }
     a{

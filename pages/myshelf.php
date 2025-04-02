@@ -74,12 +74,28 @@
     <div>
         <?php
         include '../db.php'; // Kết nối database
-        $query = "SELECT * FROM books";
-        $result = $conn->query($query);
+        session_start(); // Bắt đầu session
+        
+        // Trong trường hợp thực tế, bạn sẽ lấy user_id từ session sau khi đăng nhập
+        // Ví dụ: $user_id = $_SESSION['user_id'];
+        // Tạm thời sử dụng user_id = 1 cho mục đích demo
+        $user_id = 1;
+        
+        // Lấy sách từ kệ của người dùng
+        $query = "SELECT books.* FROM books 
+                  JOIN user_shelf ON books.id = user_shelf.book_id 
+                  WHERE user_shelf.user_id = ? 
+                  ORDER BY user_shelf.added_date DESC";
+        
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $count = $result->num_rows;
         ?>
 
         <div class="bookshelf-container">
+            
             <?php if ($count > 0):
                 $index = 0;
                 while ($row = $result->fetch_assoc()):
@@ -90,8 +106,8 @@
                     <?php endif; ?>
 
                     <div class="book-item">
-                        <a href="details.php?id=<?= $row['id'] ?>">
-                            <img src="<?= $row['image'] ?>" class="img_book" alt="<?= $row['title'] ?>">
+                        <a href="viewdetail.php?id=<?= $row['id'] ?>">
+                            <img src="<?= htmlspecialchars($row['image']) ?>" class="img_book" alt="<?= htmlspecialchars($row['title']) ?>">
                         </a>
                     </div>
 

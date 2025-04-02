@@ -25,7 +25,7 @@
                 </ul>
             </div>
             <div class="col-md-3">
-                <h5 class="text-uppercase">Công ty Đô 5 Lon Tiger</h5>
+                <h5 class="text-uppercase">Công ty Hà Lâm</h5>
                 <p>Địa chỉ: 64/20 Võ Oanh, p25, BT, HCM</p>
                 <p>Điện thoại: 0976007944</p>
                 <p>Email: <a href="mailto:popsapp-support@popsww.com">popsapp-support@popsww.com</a></p>

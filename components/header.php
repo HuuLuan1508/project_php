@@ -13,10 +13,14 @@
             <div class="col-6 gap-4">
                 <ul class="d-flex gap-3 align-items-center justify-content-end m-0 p-0 ">
                     <li>
-                        <div class="position-relative">
-                            <input class="input_search form-control pe-5" type="text" placeholder="Cơm nước gì chưa nò..." style="color: black;">
-                            <i class="fa-solid fa-magnifying-glass position-absolute top-50 end-0 translate-middle-y me-2" style="color: black;"></i>
-                        </div>
+                        <form action="/PROJECT_PHP/pages/search.php" method="GET">
+                            <div class="position-relative">
+                                <input class="input_search form-control pe-5" type="text" name="keyword" placeholder="Bạn tìm gì..." style="color: black;">
+                                <button type="submit" class="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y me-2">
+                                    <i class="fa-solid fa-magnifying-glass" style="color: black;"></i>
+                                </button>
+                            </div>
+                        </form>
                     </li>
 
                     <li>
