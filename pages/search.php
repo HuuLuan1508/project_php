@@ -1,7 +1,6 @@
 <?php
-include '../db.php'; // Kết nối database
+include '../db.php'; 
 
-// Lấy từ khóa tìm kiếm từ URL
 $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
 // Nếu từ khóa rỗng, chuyển hướng về trang chủ

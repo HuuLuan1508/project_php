@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Kiểm tra email có tồn tại không
+    // Kiểm tra email 
     $query = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($query);
 

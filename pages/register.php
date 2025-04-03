@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Mã hóa mật khẩu trước khi lưu vào database
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    // Kiểm tra email đã tồn tại chưa
+    // Kiểm tra email 
     $check_email = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($check_email);
 
