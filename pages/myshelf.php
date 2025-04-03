@@ -76,12 +76,10 @@
         include '../db.php'; // Kết nối database
         session_start(); // Bắt đầu session
         
-        // Trong trường hợp thực tế, bạn sẽ lấy user_id từ session sau khi đăng nhập
-        // Ví dụ: $user_id = $_SESSION['user_id'];
-        // Tạm thời sử dụng user_id = 1 cho mục đích demo
+
         $user_id = 1;
         
-        // Lấy sách từ kệ của người dùng
+       
         $query = "SELECT books.* FROM books 
                   JOIN user_shelf ON books.id = user_shelf.book_id 
                   WHERE user_shelf.user_id = ? 

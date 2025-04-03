@@ -1,11 +1,22 @@
 <?php
+// Hiển thị tất cả lỗi PHP
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include '../db.php'; // Kết nối database
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Kiểm tra kết nối database
+    if (!$conn) {
+        die("Kết nối database thất bại: " . mysqli_connect_error());
+    }
+    
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
+    $redBooks = 0; // Giá trị mặc định cho trường redBooks
 
     // Kiểm tra mật khẩu nhập lại
     if ($password !== $confirm_password) {
@@ -15,26 +26,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Mã hóa mật khẩu trước khi lưu vào database
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
     // Kiểm tra email đã tồn tại chưa
-    $check_email = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($check_email);
+    $check_email = "SELECT * FROM users WHERE email=?";
+    $stmt = $conn->prepare($check_email);
+    
+    if (!$stmt) {
+        die("Lỗi prepare statement: " . $conn->error);
+    }
+    
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         echo "<script>alert('Email đã tồn tại!'); window.location.href='register.php';</script>";
         exit();
     }
+    $stmt->close();
 
-    // Chèn dữ liệu vào bảng users
-    $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$hashed_password')";//mk dạng băm
-
-    if ($conn->query($sql) === TRUE) {
+    // Chèn dữ liệu vào bảng users sử dụng prepared statement, bao gồm trường redBooks
+    $sql = "INSERT INTO users (name, email, password, redBooks) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    
+    if (!$stmt) {
+        die("Lỗi prepare statement: " . $conn->error);
+    }
+    
+    $stmt->bind_param("sssi", $name, $email, $hashed_password, $redBooks);
+    
+    if ($stmt->execute()) {
         echo "<script>alert('Đăng ký thành công!'); window.location.href='login.php';</script>";
     } else {
-        echo "Lỗi: " . $sql . "<br>" . $conn->error;
+        echo "Lỗi: " . $stmt->error;
     }
+    $stmt->close();
 }
 
-$conn->close();
+// Đóng kết nối sau khi xử lý xong
+if (isset($conn)) {
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
