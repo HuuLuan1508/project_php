@@ -1,15 +1,10 @@
 <?php
 include '../db.php'; 
 
+
 $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 
-// Nếu từ khóa rỗng, chuyển hướng về trang chủ
-if (empty($keyword)) {
-    header('Location: /PROJECT_PHP/index.php');
-    exit;
-}
 
-// Tìm kiếm trong database - chỉ tìm theo title
 $sql = "SELECT * FROM books WHERE title LIKE ?";
 
 $search_term = "%$keyword%";

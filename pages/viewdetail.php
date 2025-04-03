@@ -1,5 +1,5 @@
 <?php
-include '../db.php'; // Kết nối database
+include '../db.php';
 
 
 // Kiểm tra ID hợp lệ
@@ -62,7 +62,6 @@ $chapters = $stmt->get_result();
                     <p><strong>Thể loại:</strong> <?= htmlspecialchars($book['category']) ?></p>
                     <p><?= nl2br(htmlspecialchars($book['description'])) ?></p>
                     
-                    <!-- Thêm nút "Thêm vào kệ sách" -->
                     <form method="post" action="add_to_shelf.php">
                         <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
                         <button type="submit" class="btn btn-success">
